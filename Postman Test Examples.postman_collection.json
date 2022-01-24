@@ -46,6 +46,48 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Response time check",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response time is less than 1000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "https://virtserver.swaggerhub.com/w4dd325/test/1.0.0/pet/0",
+					"protocol": "https",
+					"host": [
+						"virtserver",
+						"swaggerhub",
+						"com"
+					],
+					"path": [
+						"w4dd325",
+						"test",
+						"1.0.0",
+						"pet",
+						"0"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
