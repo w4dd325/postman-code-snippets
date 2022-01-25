@@ -88,6 +88,145 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Check data type of a response value",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"pm.test(\"Test data type of the response\", () => {\r",
+							"    pm.expect(jsonData.category.name).to.be.a(\"string\");\r",
+							"    //other options to use;\r",
+							"    //pm.expect(jsonData).to.be.an(\"object\");\r",
+							"    //pm.expect(jsonData.name).to.be.a(\"string\");\r",
+							"    //pm.expect(jsonData.age).to.be.a(\"number\");\r",
+							"    //pm.expect(jsonData.hobbies).to.be.an(\"array\");\r",
+							"    //pm.expect(jsonData.website).to.be.undefined;\r",
+							"    //pm.expect(jsonData.email).to.be.null;\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "https://virtserver.swaggerhub.com/w4dd325/test/1.0.0/pet/0",
+					"protocol": "https",
+					"host": [
+						"virtserver",
+						"swaggerhub",
+						"com"
+					],
+					"path": [
+						"w4dd325",
+						"test",
+						"1.0.0",
+						"pet",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check value against list",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Value is in valid list\", () => {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.category.name).to.be.oneOf([\"string\", \"test\", \"exmple\"]);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "https://virtserver.swaggerhub.com/w4dd325/test/1.0.0/pet/0",
+					"protocol": "https",
+					"host": [
+						"virtserver",
+						"swaggerhub",
+						"com"
+					],
+					"path": [
+						"w4dd325",
+						"test",
+						"1.0.0",
+						"pet",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check JSON values in response",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Check JSON values\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    //Example of top level\r",
+							"    pm.expect(jsonData.id).to.eql(0);\r",
+							"    //Example of first indent level\r",
+							"    pm.expect(jsonData.category.name).to.eql(\"string\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "https://virtserver.swaggerhub.com/w4dd325/test/1.0.0/pet/0",
+					"protocol": "https",
+					"host": [
+						"virtserver",
+						"swaggerhub",
+						"com"
+					],
+					"path": [
+						"w4dd325",
+						"test",
+						"1.0.0",
+						"pet",
+						"0"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
