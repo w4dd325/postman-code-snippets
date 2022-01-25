@@ -1,19 +1,28 @@
 {
 	"info": {
-		"_postman_id": "dc8410b9-d5da-4ba1-9918-5eb7c4858336",
-		"name": "Postman Test Examples",
+		"_postman_id": "5d8c3ede-8c4e-4560-8fe9-1a4e8252544c",
+		"name": "aaaaaaaaaa",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "Status code check",
+			"name": "Headers exists check",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Status code is 200\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
+							"pm.test(\"Following headers are all present\", function () {\r",
+							"    pm.response.to.have.header(\"Date\");\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"    pm.response.to.have.header(\"Content-Length\");\r",
+							"    pm.response.to.have.header(\"Connection\");\r",
+							"    pm.response.to.have.header(\"Access-Control-Allow-Headers\");\r",
+							"    pm.response.to.have.header(\"Access-Control-Allow-Origin\");\r",
+							"    pm.response.to.have.header(\"Access-Control-Allow-Methods\");\r",
+							"    pm.response.to.have.header(\"Access-Control-Allow-Credentials\");\r",
+							"    pm.response.to.have.header(\"Content-Encoding\");\r",
+							"    pm.response.to.have.header(\"Server\");\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -48,14 +57,26 @@
 			"response": []
 		},
 		{
-			"name": "Response time check",
+			"name": "Headers to have value check",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Response time is less than 1000ms\", function () {\r",
-							"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+							"const moment = require('moment');\r",
+							"let now = (moment().format(\"ddd, DD MMM YYYY HH:mm:ss \")+\"GMT\")\r",
+							"\r",
+							"pm.test(\"Check all headers return with correct values\", () => {\r",
+							"    pm.expect(pm.response.headers.get('Date')).to.eql(now);\r",
+							"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+							"    pm.expect(pm.response.headers.get('Content-Length')).to.eql('125');\r",
+							"    pm.expect(pm.response.headers.get('Connection')).to.eql('keep-alive');\r",
+							"    pm.expect(pm.response.headers.get('Access-Control-Allow-Headers')).to.eql('X-Requested-With,Content-Type,Accept,Origin');\r",
+							"    pm.expect(pm.response.headers.get('Access-Control-Allow-Origin')).to.eql('*');\r",
+							"    pm.expect(pm.response.headers.get('Access-Control-Allow-Methods')).to.eql('*');\r",
+							"    pm.expect(pm.response.headers.get('Access-Control-Allow-Credentials')).to.eql('true');\r",
+							"    pm.expect(pm.response.headers.get('Content-Encoding')).to.eql('gzip');\r",
+							"    pm.expect(pm.response.headers.get('Server')).to.eql('Jetty(9.4.29.v20200521)');\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -90,23 +111,20 @@
 			"response": []
 		},
 		{
-			"name": "Check data type of a response value",
+			"name": "If statement example",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
 							"var jsonData = pm.response.json();\r",
-							"pm.test(\"Test data type of the response\", () => {\r",
-							"    pm.expect(jsonData.category.name).to.be.a(\"string\");\r",
-							"    //other options to use;\r",
-							"    //pm.expect(jsonData).to.be.an(\"object\");\r",
-							"    //pm.expect(jsonData.name).to.be.a(\"string\");\r",
-							"    //pm.expect(jsonData.age).to.be.a(\"number\");\r",
-							"    //pm.expect(jsonData.hobbies).to.be.an(\"array\");\r",
-							"    //pm.expect(jsonData.website).to.be.undefined;\r",
-							"    //pm.expect(jsonData.email).to.be.null;\r",
-							"});"
+							"if (jsonData.category.name) {\r",
+							"    console.log(\"name was found!\");\r",
+							"    // do something\r",
+							"} else {\r",
+							"    console.log(\"no name ...\");\r",
+							"    //do something else\r",
+							"}"
 						],
 						"type": "text/javascript"
 					}
@@ -140,16 +158,20 @@
 			"response": []
 		},
 		{
-			"name": "Check value against list",
+			"name": "Try and catch example",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Value is in valid list\", () => {\r",
-							"    var jsonData = pm.response.json();\r",
-							"    pm.expect(jsonData.category.name).to.be.oneOf([\"string\", \"test\", \"exmple\"]);\r",
-							"});"
+							"const x = Math.random(); \r",
+							"//console.log('x=' + x);\r",
+							"try{\r",
+							"    pm.expect(x).to.be.below(0.5,\"was not below 0.5\");\r",
+							"    pm.test(\"Pass - it was less than 0.5\", () => true); // this will only execute if no exception raised\r",
+							"}catch(e){\r",
+							"    pm.test(\"FAIL - it was more than 0.5\", () => {throw new Error(e.message)}); \r",
+							"}"
 						],
 						"type": "text/javascript"
 					}
@@ -183,19 +205,15 @@
 			"response": []
 		},
 		{
-			"name": "Check JSON values in response",
+			"name": "Logging example",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Check JSON values\", function () {\r",
-							"    var jsonData = pm.response.json();\r",
-							"    //Example of top level\r",
-							"    pm.expect(jsonData.id).to.eql(0);\r",
-							"    //Example of first indent level\r",
-							"    pm.expect(jsonData.category.name).to.eql(\"string\");\r",
-							"});"
+							"//Log the type of a variable or response property. \r",
+							"console.log(typeof pm.response.json().id);\r",
+							"console.log(typeof pm.response.json().category.name);"
 						],
 						"type": "text/javascript"
 					}
