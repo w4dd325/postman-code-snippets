@@ -9,3 +9,8 @@ Includes examples for;
 - Check data type of a response value
 - Check value against list
 - Check JSON values in response
+- Body response includes a value check
+- Headers exists check
+- Headers to have value check
+- If statement example
+- Try and catch example
