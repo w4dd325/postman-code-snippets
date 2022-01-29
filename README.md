@@ -14,3 +14,7 @@ Includes examples for;
 - Headers to have value check
 - If statement example
 - Try and catch example
+- Check field value in response
+- Check nested field value in response
+- Try and catch to allow continue on test fail
+- Schema Validation
