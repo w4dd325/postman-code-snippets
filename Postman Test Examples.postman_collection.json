@@ -525,7 +525,7 @@
 						"exec": [
 							"pm.test(\"API response contains the expected fields\", () => {\r",
 							"  const response = pm.response.json();\r",
-							"  pm.expect(response).to.have.nested.property(\"category.name\", \"string\");  \r",
+							"  pm.expect(response).to.have.nested.property(\"category.name\", \"astring\");  \r",
 							"  pm.expect(response).to.have.nested.property(\"category.id\", 0);\r",
 							"});"
 						],
@@ -625,7 +625,7 @@
 			"response": []
 		},
 		{
-			"name": "Schema Validation",
+			"name": "Schema validation",
 			"event": [
 				{
 					"listen": "test",
@@ -731,6 +731,83 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Count items in array",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"pm.test(\"Number of items in tags array = \" + jsonData.tags.length);\r",
+							"//Or output to console...\r",
+							"console.log(\"Number of items in tags array = \" + jsonData.tags.length);\r",
+							"\r",
+							"//--------------------------------------------------------------------------\r",
+							"\r",
+							"//Or count and check against expected number like so;\r",
+							"pm.test(\"Is array \" + jsonData.tags.length + \" item(s) long?\", function () {\r",
+							"    pm.expect(jsonData.tags.length).to.equal(1);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "https://virtserver.swaggerhub.com/w4dd325/test/1.0.0/pet/0",
+					"protocol": "https",
+					"host": [
+						"virtserver",
+						"swaggerhub",
+						"com"
+					],
+					"path": [
+						"w4dd325",
+						"test",
+						"1.0.0",
+						"pet",
+						"0"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "token",
+			"value": "125",
+			"type": "string"
 		}
 	]
 }

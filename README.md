@@ -18,3 +18,4 @@ Includes examples for;
 - Check nested field value in response
 - Try and catch to allow continue on test fail
 - Schema Validation
+- Count items in array
