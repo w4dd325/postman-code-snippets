@@ -1,4 +1,7 @@
-# postman-test-examples
+<img src="https://user-images.githubusercontent.com/86320001/151955989-cf6ac46d-790f-423f-892d-4425759159cd.png" 
+     width="200" 
+     height="70" />
+     
 Information on diferent test options and code that can be used within Postman collections.
 
 Note; Requests use the following free API (no auth) from Swagger https://virtserver.swaggerhub.com/w4dd325/test/1.0.0/pet/0
