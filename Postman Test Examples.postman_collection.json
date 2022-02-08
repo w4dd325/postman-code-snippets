@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "ba5f0abd-4126-42f6-8bb0-f6478e781d14",
+		"_postman_id": "185f0946-6e49-4322-a55d-447f77f219f2",
 		"name": "Postman Test Examples",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -754,6 +754,53 @@
 							"pm.test(\"Is array \" + jsonData.tags.length + \" item(s) long?\", function () {\r",
 							"    pm.expect(jsonData.tags.length).to.equal(1);\r",
 							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "https://virtserver.swaggerhub.com/w4dd325/test/1.0.0/pet/0",
+					"protocol": "https",
+					"host": [
+						"virtserver",
+						"swaggerhub",
+						"com"
+					],
+					"path": [
+						"w4dd325",
+						"test",
+						"1.0.0",
+						"pet",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "For each in array with if",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const response = pm.response.json();\r",
+							"\r",
+							"for (let i = 0; i < response.tags.length; i++) {\r",
+							"    console.log(\"value is \" + response.tags[i].name + \" and index is \" + i)\r",
+							"    if(response.tags[i].name === \"string\"){\r",
+							"        console.log(\"IF STRING = value is \" + response.tags[i].name + \" and index is \" + i)\r",
+							"    }\r",
+							"}"
 						],
 						"type": "text/javascript"
 					}
