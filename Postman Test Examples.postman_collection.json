@@ -793,7 +793,7 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"const response = pm.response.json();\r",
+							"var response = pm.response.json();\r",
 							"\r",
 							"for (let i = 0; i < response.tags.length; i++) {\r",
 							"    console.log(\"value is \" + response.tags[i].name + \" and index is \" + i)\r",
@@ -801,6 +801,52 @@
 							"        console.log(\"IF STRING = value is \" + response.tags[i].name + \" and index is \" + i)\r",
 							"    }\r",
 							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "https://virtserver.swaggerhub.com/w4dd325/test/1.0.0/pet/0",
+					"protocol": "https",
+					"host": [
+						"virtserver",
+						"swaggerhub",
+						"com"
+					],
+					"path": [
+						"w4dd325",
+						"test",
+						"1.0.0",
+						"pet",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Base64 Encode and Decode",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const response = pm.response.json().category.name;\r",
+							"//Encode value\r",
+							"var encodedMessage = btoa(response);\r",
+							"console.log(encodedMessage);\r",
+							"//Decode value\r",
+							"var decodedMessage = atob(encodedMessage);\r",
+							"console.log(decodedMessage);"
 						],
 						"type": "text/javascript"
 					}
