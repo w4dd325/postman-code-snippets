@@ -22,3 +22,5 @@ Includes examples for;
 - Try and catch to allow continue on test fail
 - Schema Validation
 - Count items in array
+- For each in array with if
+- Base64 Encode and Decode
