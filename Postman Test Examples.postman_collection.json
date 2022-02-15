@@ -1011,6 +1011,54 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "AND",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonData = pm.response.json();\r",
+							"\r",
+							"console.log(jsonData.results[0].name.title);\r",
+							"console.log(jsonData.results[0].gender);\r",
+							"\r",
+							"//Check the condition and save as Bool value\r",
+							"const hasItemDetails = (jsonData.results[0].name.title.includes('Miss') \r",
+							"    && jsonData.results[0].gender.includes(\"female\"));\r",
+							"\r",
+							"//Test if Bool is True or False\r",
+							"pm.test(\"Is Mr AND United Kingdom\", function () {\r",
+							"    pm.expect(hasItemDetails).to.be.true;\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "https://randomuser.me/api/",
+					"protocol": "https",
+					"host": [
+						"randomuser",
+						"me"
+					],
+					"path": [
+						"api",
+						""
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"event": [
