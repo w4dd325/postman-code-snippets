@@ -1059,6 +1059,53 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Greater than and less than",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonData = pm.response.json();\r",
+							"\r",
+							"console.log(jsonData.results[0].dob.age);\r",
+							"\r",
+							"pm.test(\"Age is greater than 30\", function () {\r",
+							"    pm.expect(jsonData.results[0].dob.age).to.be.above(30);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Age is less than 70\", function () {\r",
+							"    pm.expect(jsonData.results[0].dob.age).to.be.below(70);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "https://randomuser.me/api/",
+					"protocol": "https",
+					"host": [
+						"randomuser",
+						"me"
+					],
+					"path": [
+						"api",
+						""
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"event": [
