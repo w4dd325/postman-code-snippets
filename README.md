@@ -12,7 +12,7 @@ Note; Requests use the following free API's (no auth);
 <table width=100%>
     <thead>
         <tr>
-            <th colspan=3>Includes examples for</th>
+            <th colspan=3>Postman Test Examples Collection Includes...</th>
         </tr>
     </thead>
     <tbody>
@@ -49,7 +49,7 @@ Note; Requests use the following free API's (no auth);
         <tr height=50>
             <td width="33%">Filter in response</td>
             <td width="33%">OR</td>
-            <td width="33%"></td>
+            <td width="33%">AND</td>
         </tr>
     </tbody>
 </table>
