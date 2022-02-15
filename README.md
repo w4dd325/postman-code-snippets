@@ -4,10 +4,10 @@
      
 Information on diferent test options and code that can be used within Postman collections.
 
-Note; Requests use the following free API's (no auth);
-https://virtserver.swaggerhub.com/w4dd325/test/1.0.0/pet/0
-https://randomuser.me/api/
-http://universities.hipolabs.com/search?country=United+States
+Note; Requests use the following free API's (no auth); 
+[Swagger Pet Store](https://virtserver.swaggerhub.com/w4dd325/test/1.0.0/pet/0) | 
+[Random User](https://randomuser.me/api/) | 
+[Universities List](http://universities.hipolabs.com/search?country=United+States)
 
 Includes examples for;
 - Status code check
@@ -27,3 +27,5 @@ Includes examples for;
 - Count items in array
 - For each in array with if
 - Base64 Encode and Decode
+- Find in response
+- Filter in response
