@@ -51,6 +51,11 @@ Note; Requests use the following free API's (no auth);
             <td width="33%">OR</td>
             <td width="33%">AND</td>
         </tr>
+        <tr height=80>
+            <td width="33%">Greater than and less than</td>
+            <td width="33%"></td>
+            <td width="33%"></td>
+        </tr>
     </tbody>
 </table>
 
