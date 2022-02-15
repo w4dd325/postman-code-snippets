@@ -48,7 +48,7 @@ Note; Requests use the following free API's (no auth);
         </tr>
         <tr height=50>
             <td width="33%">Filter in response</td>
-            <td width="33%"></td>
+            <td width="33%">OR</td>
             <td width="33%"></td>
         </tr>
     </tbody>
