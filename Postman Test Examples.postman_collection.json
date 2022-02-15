@@ -878,6 +878,139 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Find in response",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//Find completes on the first occurance found.\r",
+							"const jsonData = pm.response.json();\r",
+							"pm.test(\"Result has Mr\", () => {\r",
+							"    let result = jsonData.results.find(a => a.name.title === \"Mr\")\r",
+							"    pm.expect(result.name.title).to.eql(\"Mr\")\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "https://randomuser.me/api/",
+					"protocol": "https",
+					"host": [
+						"randomuser",
+						"me"
+					],
+					"path": [
+						"api",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Filter in response",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//Filter returns all occurances found.\r",
+							"const jsonData = pm.response.json();\r",
+							"pm.test(\"Use filter to count all US alpha_two_codes\", () => {\r",
+							"    let result = jsonData.filter(a => a.alpha_two_code === \"US\")\r",
+							"    console.log(result.length)\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://universities.hipolabs.com/search?country=United+States",
+					"protocol": "http",
+					"host": [
+						"universities",
+						"hipolabs",
+						"com"
+					],
+					"path": [
+						"search"
+					],
+					"query": [
+						{
+							"key": "country",
+							"value": "United+States"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "OR",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonData = pm.response.json();\r",
+							"console.log(jsonData.results[0].name.title);\r",
+							"\r",
+							"const hasItemDetails = (jsonData.results[0].name.title.includes('Mr') \r",
+							"    || jsonData.results[0].name.title.includes('Mrs'));\r",
+							"\r",
+							"pm.test(\"Is Mr OR Mrs\", function () {\r",
+							"    pm.expect(hasItemDetails).to.be.true;\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "https://randomuser.me/api/",
+					"protocol": "https",
+					"host": [
+						"randomuser",
+						"me"
+					],
+					"path": [
+						"api",
+						""
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"event": [
@@ -905,6 +1038,10 @@
 			"key": "token",
 			"value": "125",
 			"type": "string"
+		},
+		{
+			"key": "talls",
+			"value": ""
 		}
 	]
 }
