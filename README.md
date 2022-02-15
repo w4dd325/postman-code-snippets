@@ -53,3 +53,5 @@ Note; Requests use the following free API's (no auth);
         </tr>
     </tbody>
 </table>
+
+The Set Next Request Example Collection has a working example of controlling work flows using the setNextRequest option.
