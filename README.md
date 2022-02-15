@@ -4,7 +4,10 @@
      
 Information on diferent test options and code that can be used within Postman collections.
 
-Note; Requests use the following free API (no auth) from Swagger https://virtserver.swaggerhub.com/w4dd325/test/1.0.0/pet/0
+Note; Requests use the following free API's (no auth);
+https://virtserver.swaggerhub.com/w4dd325/test/1.0.0/pet/0
+https://randomuser.me/api/
+http://universities.hipolabs.com/search?country=United+States
 
 Includes examples for;
 - Status code check
