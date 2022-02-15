@@ -12,44 +12,46 @@ Note; Requests use the following free API's (no auth);
 <table width=100%>
     <thead>
         <tr>
-            <th colspan=3>Includes examples for</th>
+            <th colspan=3>Postman Test Examples Collection Includes...</th>
         </tr>
     </thead>
     <tbody>
-        <tr height=50>
+        <tr height=80>
             <td width="33%">Status code check</td>
             <td width="33%">Response time check</td>
             <td width="33%">Check data type of a response value</td>
         </tr>
-        <tr height=50>
+        <tr height=80>
             <td width="33%">Check value against list</td>
             <td width="33%">Check JSON values in response</td>
             <td width="33%">Body response includes a value check</td>
         </tr>
-        <tr height=50>
+        <tr height=80>
             <td width="33%">Headers exists check</td>
             <td width="33%">Headers to have value check</td>
             <td width="33%">If statement example</td>
         </tr>
-        <tr height=50>
+        <tr height=80>
             <td width="33%">Try and catch example</td>
             <td width="33%">Check field value in response</td>
             <td width="33%">Check nested field value in response</td>
         </tr>
-        <tr height=50>
+        <tr height=80>
             <td width="33%">Try and catch to allow continue on test fail</td>
             <td width="33%">Schema Validation</td>
             <td width="33%">Count items in array</td>
         </tr>
-        <tr height=50>
+        <tr height=80>
             <td width="33%">For each in array with if</td>
             <td width="33%">Base64 Encode and Decode</td>
             <td width="33%">Find in response</td>
         </tr>
-        <tr height=50>
+        <tr height=80>
             <td width="33%">Filter in response</td>
             <td width="33%">OR</td>
-            <td width="33%"></td>
+            <td width="33%">AND</td>
         </tr>
     </tbody>
 </table>
+
+The Set Next Request Example Collection has a working example of controlling work flows using the setNextRequest option.
