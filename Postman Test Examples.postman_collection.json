@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "185f0946-6e49-4322-a55d-447f77f219f2",
+		"_postman_id": "5c0f4df7-e4a1-4823-b24b-ebbafb0419ca",
 		"name": "Postman Test Examples",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -1079,6 +1079,49 @@
 							"    pm.expect(jsonData.results[0].dob.age).to.be.below(70);\r",
 							"});\r",
 							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "https://randomuser.me/api/",
+					"protocol": "https",
+					"host": [
+						"randomuser",
+						"me"
+					],
+					"path": [
+						"api",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Replace a character",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonData = pm.response.json().info.version;\r",
+							"console.log(\"Normal value = \", jsonData);\r",
+							"console.log(\"Round down = \", Math.floor(jsonData));\r",
+							"\r",
+							"let newVal = jsonData.replace('.', '');\r",
+							"\r",
+							"console.log(newVal);\r",
+							"console.log(newVal.length);"
 						],
 						"type": "text/javascript"
 					}

@@ -53,7 +53,7 @@ Note; Requests use the following free API's (no auth);
         </tr>
         <tr height=80>
             <td width="33%">Greater than and less than</td>
-            <td width="33%"></td>
+            <td width="33%">Replace a character</td>
             <td width="33%"></td>
         </tr>
     </tbody>
