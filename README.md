@@ -66,4 +66,3 @@ Note; Requests use the following free API's (no auth);
 
 The Set Next Request Example Collection has a working example of controlling work flows using the setNextRequest option.
 
-Test
