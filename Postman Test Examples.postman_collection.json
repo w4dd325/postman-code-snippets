@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "5c0f4df7-e4a1-4823-b24b-ebbafb0419ca",
+		"_postman_id": "e34bec43-e623-41e8-adfb-64960a28e705",
 		"name": "Postman Test Examples",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -1115,8 +1115,6 @@
 					"script": {
 						"exec": [
 							"const jsonData = pm.response.json().info.version;\r",
-							"console.log(\"Normal value = \", jsonData);\r",
-							"console.log(\"Round down = \", Math.floor(jsonData));\r",
 							"\r",
 							"let newVal = jsonData.replace('.', '');\r",
 							"\r",
@@ -1145,6 +1143,160 @@
 					"path": [
 						"api",
 						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Math Round",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonData = pm.response.json();\r",
+							"\r",
+							"console.log(jsonData.bpi.GBP.rate_float);\r",
+							"let numberToRound = jsonData.bpi.GBP.rate_float;\r",
+							"console.log(Math.floor(numberToRound));\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.coindesk.com/v1/bpi/currentprice.json",
+					"protocol": "https",
+					"host": [
+						"api",
+						"coindesk",
+						"com"
+					],
+					"path": [
+						"v1",
+						"bpi",
+						"currentprice.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Math Round Down with Floor",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonData = pm.response.json();\r",
+							"\r",
+							"console.log(jsonData.bpi.GBP.rate_float);\r",
+							"let numberToRound = jsonData.bpi.GBP.rate_float;\r",
+							"console.log(Math.floor(numberToRound));\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.coindesk.com/v1/bpi/currentprice.json",
+					"protocol": "https",
+					"host": [
+						"api",
+						"coindesk",
+						"com"
+					],
+					"path": [
+						"v1",
+						"bpi",
+						"currentprice.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Math Round Up with Ceil",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonData = pm.response.json();\r",
+							"\r",
+							"console.log(jsonData.bpi.GBP.rate_float);\r",
+							"let numberToRound = jsonData.bpi.GBP.rate_float;\r",
+							"console.log(Math.ceil(numberToRound));\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.coindesk.com/v1/bpi/currentprice.json",
+					"protocol": "https",
+					"host": [
+						"api",
+						"coindesk",
+						"com"
+					],
+					"path": [
+						"v1",
+						"bpi",
+						"currentprice.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Math Trunc",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonData = pm.response.json();\r",
+							"\r",
+							"console.log(jsonData.bpi.GBP.rate_float);\r",
+							"let numberToRound = jsonData.bpi.GBP.rate_float;\r",
+							"console.log(Math.trunc(numberToRound));\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.coindesk.com/v1/bpi/currentprice.json",
+					"protocol": "https",
+					"host": [
+						"api",
+						"coindesk",
+						"com"
+					],
+					"path": [
+						"v1",
+						"bpi",
+						"currentprice.json"
 					]
 				}
 			},

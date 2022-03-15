@@ -54,9 +54,15 @@ Note; Requests use the following free API's (no auth);
         <tr height=80>
             <td width="33%">Greater than and less than</td>
             <td width="33%">Replace a character</td>
-            <td width="33%"></td>
+            <td width="33%">Math Round</td>
+        </tr>
+        <tr height=80>
+            <td width="33%">Math Round Down with Floor</td>
+            <td width="33%">Math Round Up with Ceil</td>
+            <td width="33%">Math Trunc</td>
         </tr>
     </tbody>
 </table>
 
 The Set Next Request Example Collection has a working example of controlling work flows using the setNextRequest option.
+
