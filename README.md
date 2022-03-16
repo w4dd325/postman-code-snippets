@@ -8,6 +8,9 @@ A simple collection that returns a JSON response body. The URL and 'test' tab bo
 # MongoDB API Examples
 A simple collection that shows how to connect to the MongoDB API.
 
+# Set Next Request Example
+The Set Next Request Example Collection has a working example of controlling work flows using the setNextRequest option.
+
 # Test Examples Collection
 Information on diferent test options and code that can be used within Postman collections.
 
@@ -70,9 +73,6 @@ Note; Requests use the following free API's (no auth);
         </tr>
     </tbody>
 </table>
-
-# Set Next Request Example
-The Set Next Request Example Collection has a working example of controlling work flows using the setNextRequest option.
 
 # Visualizer Examples
 Examples of displaying response data in diferent ways using the Postman vizualiser option.
