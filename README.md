@@ -1,8 +1,12 @@
 <img src="https://user-images.githubusercontent.com/86320001/151955989-cf6ac46d-790f-423f-892d-4425759159cd.png" 
      width="200" 
      height="70" />
+     
 # Data Driven Test Example
 A simple collection that returns a JSON response body. The URL and 'test' tab both include a dynamic variable fed from a CSV file using 'Collection Runner'. 
+
+# MongoDB API Examples
+A simple collection that shows how to connect to the MongoDB API.
 
 # Test Examples Collection
 Information on diferent test options and code that can be used within Postman collections.
@@ -70,3 +74,5 @@ Note; Requests use the following free API's (no auth);
 # Set Next Request Example
 The Set Next Request Example Collection has a working example of controlling work flows using the setNextRequest option.
 
+# Visualizer Examples
+Examples of displaying response data in diferent ways using the Postman vizualiser option.
