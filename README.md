@@ -76,5 +76,3 @@ Note; Requests use the following free API's (no auth);
 
 # Visualizer Examples
 Examples of displaying response data in diferent ways using the Postman vizualiser option.
-
-Test
