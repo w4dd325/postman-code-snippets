@@ -5,9 +5,6 @@
 # Data Driven Test Example
 A simple collection that returns a JSON response body. The URL and 'test' tab both include a dynamic variable fed from a CSV file using 'Collection Runner'. 
 
-# MongoDB API Examples
-A simple collection that shows how to connect to the MongoDB API.
-
 # Set Next Request Example
 The Set Next Request Example Collection has a working example of controlling work flows using the setNextRequest option.
 
