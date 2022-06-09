@@ -1,8 +1,9 @@
 {
 	"info": {
-		"_postman_id": "e34bec43-e623-41e8-adfb-64960a28e705",
+		"_postman_id": "b281021d-1b1b-4992-926e-0ec97a73a688",
 		"name": "Postman Test Examples",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18694725"
 	},
 	"item": [
 		{
@@ -948,7 +949,7 @@
 					}
 				],
 				"url": {
-					"raw": "http://universities.hipolabs.com/search?country=United+States",
+					"raw": "http://universities.hipolabs.com/search?country=Spain",
 					"protocol": "http",
 					"host": [
 						"universities",
@@ -961,7 +962,7 @@
 					"query": [
 						{
 							"key": "country",
-							"value": "United+States"
+							"value": "Spain"
 						}
 					]
 				}
@@ -1297,6 +1298,209 @@
 						"v1",
 						"bpi",
 						"currentprice.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Using Slice with a RegEx",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const response = pm.response.text();\r",
+							"let authCode = response.match(/authorizationCode = '(.*?)';/g);\r",
+							"//remove first and last characters with slice;\r",
+							"console.log(authCode[0].slice(21, -2));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "<!DOCTYPE html>\r\n<html>\r\n    <head>\r\n--------------------\r\n</head>\r\n    <body>\r\n        <script>\r\n        function onClickButton(word) {\r\n        if (word == 'yes'){\r\n          var authorizationCode = '360ad5ce-ecfe-4ad4-83d1-9254e89a3ccc';\r\n          var state = 'c8271b81-4229-6a1f-bf9c-758f11c1f5b1';\r\n        } else {\r\n          alert(word);\r\n        }\r\n      }\r\n    </script>\r\n        <div class=\"shb-psua-sign-app-sandbox-container\">\r\n    --------------------\r\n    </div>\r\n    </body>\r\n</html>",
+					"options": {
+						"raw": {
+							"language": "html"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://postman-echo.com/post",
+					"protocol": "https",
+					"host": [
+						"postman-echo",
+						"com"
+					],
+					"path": [
+						"post"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Strip out value using RegEx",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var body = responseBody;\r",
+							"if(body!=null && body.length>0){\r",
+							"    var array = new RegExp(\"secret\\=(.*?)\\\"\").exec(body);\r",
+							"    if(array!=null && array.length>0 && array[1]!=null){\r",
+							"        //pm.globals.set(\"secret\", \"\"+array[1]);\r",
+							"        console.log(array[1]);\r",
+							"    }\r",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"value\": \"otpauth://totp/BTTExchange:teste123@mailinator.com?algorithm=SHA1&digits=6&issuer=WITExchange&period=30&secret=44RN6GN38TDRXZ5HXDCDA7TTWCB3YWJG\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://postman-echo.com/post",
+					"protocol": "https",
+					"host": [
+						"postman-echo",
+						"com"
+					],
+					"path": [
+						"post"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Map vlaues in array",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const response = pm.response.json();\r",
+							"\r",
+							"const skuArray = response.data.map(data => data.sku);\r",
+							"\r",
+							"console.log(\"New array of sku numbers = \", skuArray);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n        \"sku\": \"91357\",\r\n        \"name\": \"Schaukelset mit 5 Sitzen Orange\",\r\n        \"permalink\": \"https://shopnetic.de/spielzeuge-spiele/spielzeug-fuer-draussen/spieltuerme/schaukelset-mit-5-sitzen-orange/\",\r\n        \"regular_price\": \"235.03\",\r\n        \"stock_quantity\": 123,\r\n        \"categories\": [\r\n            {\r\n                \"id\": 22038,\r\n                \"name\": \"Spieltürme\",\r\n                \"slug\": \"spieltuerme\"\r\n            }\r\n        ],\r\n        \"attributes\": [\r\n            {\r\n                \"id\": 54,\r\n                \"name\": \"Farbe\",\r\n                \"position\": 1,\r\n                \"visible\": true,\r\n                \"variation\": false,\r\n                \"options\": [\r\n                    \"Orange\"\r\n                ]\r\n            },\r\n            {\r\n                \"id\": 55,\r\n                \"name\": \"Geschlecht\",\r\n                \"position\": 2,\r\n                \"visible\": true,\r\n                \"variation\": false,\r\n                \"options\": [\r\n                    \"Kinder\"\r\n                ]\r\n            },\r\n            {\r\n                \"id\": 58,\r\n                \"name\": \"Marke\",\r\n                \"position\": 5,\r\n                \"visible\": true,\r\n                \"variation\": false,\r\n                \"options\": [\r\n                    \"vidaXL\"\r\n                ]\r\n            },\r\n            {\r\n                \"id\": 59,\r\n                \"name\": \"Art der Pakete\",\r\n                \"position\": 6,\r\n                \"visible\": true,\r\n                \"variation\": false,\r\n                \"options\": [\r\n                    \"parcel\"\r\n                ]\r\n            },\r\n            {\r\n                \"id\": 60,\r\n                \"name\": \"Anzahl der Packstücke\",\r\n                \"position\": 7,\r\n                \"visible\": true,\r\n                \"variation\": false,\r\n                \"options\": [\r\n                    \"1\"\r\n                ]\r\n            }\r\n        ],\r\n        \"meta_data\": [\r\n            {\r\n                \"id\": 69383907,\r\n                \"key\": \"_alg_wc_cog_profit\",\r\n                \"value\": \"197.504202\"\r\n            },\r\n            {\r\n                \"id\": 69383908,\r\n                \"key\": \"_alg_wc_cog_profit_percent\",\r\n                \"value\": \"0\"\r\n            },\r\n            {\r\n                \"id\": 69383909,\r\n                \"key\": \"_alg_wc_cog_profit_margin\",\r\n                \"value\": \"100\"\r\n            },\r\n            {\r\n                \"id\": 69383929,\r\n                \"key\": \"fifu_list_url\",\r\n                \"value\": \"https://vdxl.im/8718475571131_a_en_hd_1.jpg|https://vdxl.im/8718475571131_g_en_hd_1.jpg|https://vdxl.im/8718475571131_g_en_hd_2.jpg|https://vdxl.im/8718475571131_g_en_hd_3.jpg|https://vdxl.im/8718475571131_g_en_hd_4.jpg|https://vdxl.im/8718475571131_g_en_hd_5.jpg|https://vdxl.im/8718475571131_g_en_hd_6.jpg|https://vdxl.im/8718475571131_g_en_hd_7.jpg|https://vdxl.im/8718475571131_g_en_hd_8.jpg|https://vdxl.im/8718475571131_g_en_hd_9.jpg|https://vdxl.im/8718475571131_g_en_hd_10.jpg|https://vdxl.im/8718475571131_g_en_hd_11.jpg\"\r\n            },\r\n            {\r\n                \"id\": 69383930,\r\n                \"key\": \"fifu_list_alt\",\r\n                \"value\": \"Schaukelset mit 5 Sitzen Orange|Schaukelset mit 5 Sitzen Orange|Schaukelset mit 5 Sitzen Orange|Schaukelset mit 5 Sitzen Orange|Schaukelset mit 5 Sitzen Orange|Schaukelset mit 5 Sitzen Orange|Schaukelset mit 5 Sitzen Orange|Schaukelset mit 5 Sitzen Orange|Schaukelset mit 5 Sitzen Orange|Schaukelset mit 5 Sitzen Orange|Schaukelset mit 5 Sitzen Orange|Schaukelset mit 5 Sitzen Orange\"\r\n            },\r\n            {\r\n                \"id\": 69383931,\r\n                \"key\": \"fifu_image_url\",\r\n                \"value\": \"https://vdxl.im/8718475571131_a_en_hd_1.jpg\"\r\n            },\r\n            {\r\n                \"id\": 69383932,\r\n                \"key\": \"fifu_image_alt\",\r\n                \"value\": \"Schaukelset mit 5 Sitzen Orange\"\r\n            },\r\n            {\r\n                \"id\": 69383933,\r\n                \"key\": \"fifu_image_url_0\",\r\n                \"value\": \"https://vdxl.im/8718475571131_g_en_hd_1.jpg\"\r\n            },\r\n            {\r\n                \"id\": 69383934,\r\n                \"key\": \"fifu_image_alt_0\",\r\n                \"value\": \"Schaukelset mit 5 Sitzen Orange\"\r\n            },\r\n            {\r\n                \"id\": 69383935,\r\n                \"key\": \"fifu_image_url_1\",\r\n                \"value\": \"https://vdxl.im/8718475571131_g_en_hd_2.jpg\"\r\n            },\r\n            {\r\n                \"id\": 69383936,\r\n                \"key\": \"fifu_image_alt_1\",\r\n                \"value\": \"Schaukelset mit 5 Sitzen Orange\"\r\n            },\r\n            {\r\n                \"id\": 69383937,\r\n                \"key\": \"fifu_image_url_2\",\r\n                \"value\": \"https://vdxl.im/8718475571131_g_en_hd_3.jpg\"\r\n            },\r\n            {\r\n                \"id\": 69383938,\r\n                \"key\": \"fifu_image_alt_2\",\r\n                \"value\": \"Schaukelset mit 5 Sitzen Orange\"\r\n            },\r\n            {\r\n                \"id\": 69383939,\r\n                \"key\": \"fifu_image_url_3\",\r\n                \"value\": \"https://vdxl.im/8718475571131_g_en_hd_4.jpg\"\r\n            },\r\n            {\r\n                \"id\": 69383940,\r\n                \"key\": \"fifu_image_alt_3\",\r\n                \"value\": \"Schaukelset mit 5 Sitzen Orange\"\r\n            },\r\n            {\r\n                \"id\": 69383941,\r\n                \"key\": \"fifu_image_url_4\",\r\n                \"value\": \"https://vdxl.im/8718475571131_g_en_hd_5.jpg\"\r\n            },\r\n            {\r\n                \"id\": 69383942,\r\n                \"key\": \"fifu_image_alt_4\",\r\n                \"value\": \"Schaukelset mit 5 Sitzen Orange\"\r\n            },\r\n            {\r\n                \"id\": 69383943,\r\n                \"key\": \"fifu_image_url_5\",\r\n                \"value\": \"https://vdxl.im/8718475571131_g_en_hd_6.jpg\"\r\n            },\r\n            {\r\n                \"id\": 69383944,\r\n                \"key\": \"fifu_image_alt_5\",\r\n                \"value\": \"Schaukelset mit 5 Sitzen Orange\"\r\n            },\r\n            {\r\n                \"id\": 69383945,\r\n                \"key\": \"fifu_image_url_6\",\r\n                \"value\": \"https://vdxl.im/8718475571131_g_en_hd_7.jpg\"\r\n            },\r\n            {\r\n                \"id\": 69383946,\r\n                \"key\": \"fifu_image_alt_6\",\r\n                \"value\": \"Schaukelset mit 5 Sitzen Orange\"\r\n            },\r\n            {\r\n                \"id\": 69383947,\r\n                \"key\": \"fifu_image_url_7\",\r\n                \"value\": \"https://vdxl.im/8718475571131_g_en_hd_8.jpg\"\r\n            },\r\n            {\r\n                \"id\": 69383948,\r\n                \"key\": \"fifu_image_alt_7\",\r\n                \"value\": \"Schaukelset mit 5 Sitzen Orange\"\r\n            },\r\n            {\r\n                \"id\": 69383949,\r\n                \"key\": \"fifu_image_url_8\",\r\n                \"value\": \"https://vdxl.im/8718475571131_g_en_hd_9.jpg\"\r\n            },\r\n            {\r\n                \"id\": 69383950,\r\n                \"key\": \"fifu_image_alt_8\",\r\n                \"value\": \"Schaukelset mit 5 Sitzen Orange\"\r\n            },\r\n            {\r\n                \"id\": 69383951,\r\n                \"key\": \"fifu_image_url_9\",\r\n                \"value\": \"https://vdxl.im/8718475571131_g_en_hd_10.jpg\"\r\n            },\r\n            {\r\n                \"id\": 69383952,\r\n                \"key\": \"fifu_image_alt_9\",\r\n                \"value\": \"Schaukelset mit 5 Sitzen Orange\"\r\n            },\r\n            {\r\n                \"id\": 69383953,\r\n                \"key\": \"fifu_image_url_10\",\r\n                \"value\": \"https://vdxl.im/8718475571131_g_en_hd_11.jpg\"\r\n            },\r\n            {\r\n                \"id\": 69383954,\r\n                \"key\": \"fifu_image_alt_10\",\r\n                \"value\": \"Schaukelset mit 5 Sitzen Orange\"\r\n            },\r\n            {\r\n                \"id\": 69383955,\r\n                \"key\": \"_rank_math_gtin_code\",\r\n                \"value\": \"8718475571131\"\r\n            },\r\n            {\r\n                \"id\": 69383956,\r\n                \"key\": \"_alg_wc_cog_cost\",\r\n                \"value\": \"145.98\"\r\n            },\r\n            {\r\n                \"id\": 69383957,\r\n                \"key\": \"_wp_page_template\",\r\n                \"value\": \"default\"\r\n            },\r\n            {\r\n                \"id\": 69383958,\r\n                \"key\": \"rank_math_internal_links_processed\",\r\n                \"value\": \"1\"\r\n            },\r\n            {\r\n                \"id\": 69483263,\r\n                \"key\": \"fifu_tmp_product_image_gallery\",\r\n                \"value\": \"10633985,10633986,10633987,10633988,10633989,10633990,10633991,10633992,10633993,10633994,10633995\"\r\n            }\r\n        ],\r\n        \"delivery_time\": {\r\n            \"name\": \"3–6 Werktage\"\r\n        }\r\n    },\r\n    {\r\n        \"sku\": \"809515\",\r\n        \"name\": \"Nachttische 2 Stk. Schwarz 45x34x44 cm Spanplatte\",\r\n        \"permalink\": \"https://shopnetic.de/moebel/tische/nachttische/nachttische-2-stk-schwarz-45x34x44-cm-spanplatte/\",\r\n        \"regular_price\": \"63.98\",\r\n        \"stock_quantity\": 140,\r\n        \"categories\": [\r\n            {\r\n                \"id\": 21525,\r\n                \"name\": \"Nachttische\",\r\n                \"slug\": \"nachttische\"\r\n            }\r\n        ],\r\n        \"attributes\": [\r\n            {\r\n                \"id\": 54,\r\n                \"name\": \"Farbe\",\r\n                \"position\": 1,\r\n                \"visible\": true,\r\n                \"variation\": false,\r\n                \"options\": [\r\n                    \"Schwarz\"\r\n                ]\r\n            },\r\n            {\r\n                \"id\": 57,\r\n                \"name\": \"Größe\",\r\n                \"position\": 4,\r\n                \"visible\": true,\r\n                \"variation\": false,\r\n                \"options\": [\r\n                    \"N/A\"\r\n                ]\r\n            },\r\n            {\r\n                \"id\": 58,\r\n                \"name\": \"Marke\",\r\n                \"position\": 5,\r\n                \"visible\": true,\r\n                \"variation\": false,\r\n                \"options\": [\r\n                    \"vidaXL\"\r\n                ]\r\n            },\r\n            {\r\n                \"id\": 59,\r\n                \"name\": \"Art der Pakete\",\r\n                \"position\": 6,\r\n                \"visible\": true,\r\n                \"variation\": false,\r\n                \"options\": [\r\n                    \"parcel\"\r\n                ]\r\n            },\r\n            {\r\n                \"id\": 60,\r\n                \"name\": \"Anzahl der Packstücke\",\r\n                \"position\": 7,\r\n                \"visible\": true,\r\n                \"variation\": false,\r\n                \"options\": [\r\n                    \"1\"\r\n                ]\r\n            }\r\n        ],\r\n        \"meta_data\": [\r\n            {\r\n                \"id\": 69278794,\r\n                \"key\": \"_alg_wc_cog_profit\",\r\n                \"value\": \"53.764706\"\r\n            },\r\n            {\r\n                \"id\": 69278795,\r\n                \"key\": \"_alg_wc_cog_profit_percent\",\r\n                \"value\": \"0\"\r\n            },\r\n            {\r\n                \"id\": 69278796,\r\n                \"key\": \"_alg_wc_cog_profit_margin\",\r\n                \"value\": \"100\"\r\n            },\r\n            {\r\n                \"id\": 69278816,\r\n                \"key\": \"fifu_list_url\",\r\n                \"value\": \"https://vdxl.im/8720286834527_m_en_hd_1.jpg|https://vdxl.im/8720286834527_a_en_hd_1.jpg|https://vdxl.im/8720286834527_g_en_hd_1.jpg|https://vdxl.im/8720286834527_g_en_hd_2.jpg|https://vdxl.im/8720286834527_g_en_hd_3.jpg|https://vdxl.im/8720286834527_g_en_hd_4.jpg|https://vdxl.im/8720286834527_g_en_hd_5.jpg|https://vdxl.im/8720286834527_g_en_hd_6.jpg|https://vdxl.im/8720286834527_g_en_hd_7.jpg|||\"\r\n            },\r\n            {\r\n                \"id\": 69278817,\r\n                \"key\": \"fifu_list_alt\",\r\n                \"value\": \"Nachttische 2 Stk. Schwarz 45x34x44 cm Spanplatte|Nachttische 2 Stk. Schwarz 45x34x44 cm Spanplatte|Nachttische 2 Stk. Schwarz 45x34x44 cm Spanplatte|Nachttische 2 Stk. Schwarz 45x34x44 cm Spanplatte|Nachttische 2 Stk. Schwarz 45x34x44 cm Spanplatte|Nachttische 2 Stk. Schwarz 45x34x44 cm Spanplatte|Nachttische 2 Stk. Schwarz 45x34x44 cm Spanplatte|Nachttische 2 Stk. Schwarz 45x34x44 cm Spanplatte|Nachttische 2 Stk. Schwarz 45x34x44 cm Spanplatte|Nachttische 2 Stk. Schwarz 45x34x44 cm Spanplatte|Nachttische 2 Stk. Schwarz 45x34x44 cm Spanplatte|Nachttische 2 Stk. Schwarz 45x34x44 cm Spanplatte\"\r\n            },\r\n            {\r\n                \"id\": 69278818,\r\n                \"key\": \"fifu_image_url\",\r\n                \"value\": \"https://vdxl.im/8720286834527_m_en_hd_1.jpg\"\r\n            },\r\n            {\r\n                \"id\": 69278819,\r\n                \"key\": \"fifu_image_alt\",\r\n                \"value\": \"Nachttische 2 Stk. Schwarz 45x34x44 cm Spanplatte\"\r\n            },\r\n            {\r\n                \"id\": 69278820,\r\n                \"key\": \"fifu_image_url_0\",\r\n                \"value\": \"https://vdxl.im/8720286834527_a_en_hd_1.jpg\"\r\n            },\r\n            {\r\n                \"id\": 69278821,\r\n                \"key\": \"fifu_image_alt_0\",\r\n                \"value\": \"Nachttische 2 Stk. Schwarz 45x34x44 cm Spanplatte\"\r\n            },\r\n            {\r\n                \"id\": 69278822,\r\n                \"key\": \"fifu_image_url_1\",\r\n                \"value\": \"https://vdxl.im/8720286834527_g_en_hd_1.jpg\"\r\n            },\r\n            {\r\n                \"id\": 69278823,\r\n                \"key\": \"fifu_image_alt_1\",\r\n                \"value\": \"Nachttische 2 Stk. Schwarz 45x34x44 cm Spanplatte\"\r\n            },\r\n            {\r\n                \"id\": 69278824,\r\n                \"key\": \"fifu_image_url_2\",\r\n                \"value\": \"https://vdxl.im/8720286834527_g_en_hd_2.jpg\"\r\n            },\r\n            {\r\n                \"id\": 69278825,\r\n                \"key\": \"fifu_image_alt_2\",\r\n                \"value\": \"Nachttische 2 Stk. Schwarz 45x34x44 cm Spanplatte\"\r\n            },\r\n            {\r\n                \"id\": 69278826,\r\n                \"key\": \"fifu_image_url_3\",\r\n                \"value\": \"https://vdxl.im/8720286834527_g_en_hd_3.jpg\"\r\n            },\r\n            {\r\n                \"id\": 69278827,\r\n                \"key\": \"fifu_image_alt_3\",\r\n                \"value\": \"Nachttische 2 Stk. Schwarz 45x34x44 cm Spanplatte\"\r\n            },\r\n            {\r\n                \"id\": 69278828,\r\n                \"key\": \"fifu_image_url_4\",\r\n                \"value\": \"https://vdxl.im/8720286834527_g_en_hd_4.jpg\"\r\n            },\r\n            {\r\n                \"id\": 69278829,\r\n                \"key\": \"fifu_image_alt_4\",\r\n                \"value\": \"Nachttische 2 Stk. Schwarz 45x34x44 cm Spanplatte\"\r\n            },\r\n            {\r\n                \"id\": 69278830,\r\n                \"key\": \"fifu_image_url_5\",\r\n                \"value\": \"https://vdxl.im/8720286834527_g_en_hd_5.jpg\"\r\n            },\r\n            {\r\n                \"id\": 69278831,\r\n                \"key\": \"fifu_image_alt_5\",\r\n                \"value\": \"Nachttische 2 Stk. Schwarz 45x34x44 cm Spanplatte\"\r\n            },\r\n            {\r\n                \"id\": 69278832,\r\n                \"key\": \"fifu_image_url_6\",\r\n                \"value\": \"https://vdxl.im/8720286834527_g_en_hd_6.jpg\"\r\n            },\r\n            {\r\n                \"id\": 69278833,\r\n                \"key\": \"fifu_image_alt_6\",\r\n                \"value\": \"Nachttische 2 Stk. Schwarz 45x34x44 cm Spanplatte\"\r\n            },\r\n            {\r\n                \"id\": 69278834,\r\n                \"key\": \"fifu_image_url_7\",\r\n                \"value\": \"https://vdxl.im/8720286834527_g_en_hd_7.jpg\"\r\n            },\r\n            {\r\n                \"id\": 69278835,\r\n                \"key\": \"fifu_image_alt_7\",\r\n                \"value\": \"Nachttische 2 Stk. Schwarz 45x34x44 cm Spanplatte\"\r\n            },\r\n            {\r\n                \"id\": 69278836,\r\n                \"key\": \"_rank_math_gtin_code\",\r\n                \"value\": \"8720286834527\"\r\n            },\r\n            {\r\n                \"id\": 69278837,\r\n                \"key\": \"_alg_wc_cog_cost\",\r\n                \"value\": \"39.74\"\r\n            },\r\n            {\r\n                \"id\": 69278838,\r\n                \"key\": \"_wp_page_template\",\r\n                \"value\": \"default\"\r\n            },\r\n            {\r\n                \"id\": 69278839,\r\n                \"key\": \"rank_math_internal_links_processed\",\r\n                \"value\": \"1\"\r\n            }\r\n        ],\r\n        \"delivery_time\": {\r\n            \"name\": \"3–6 Werktage\"\r\n        }\r\n    }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://postman-echo.com/post",
+					"protocol": "https",
+					"host": [
+						"postman-echo",
+						"com"
+					],
+					"path": [
+						"post"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check DOB",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//Get todays date\r",
+							"const moment= require('moment');\r",
+							"currentDate = moment();\r",
+							"//Console log the year\r",
+							"console.log(currentDate.format(\"YYYY\"));\r",
+							"\r",
+							"//Grab the DOB from the HTTP response (will need extra code here to grab JSON value)\r",
+							"let DOB = \"25/05/1999\";\r",
+							"\r",
+							"//Remove first 6 characters to leave just the date\r",
+							"DOB = DOB.substring(6);\r",
+							"console.log(DOB);\r",
+							"\r",
+							"//Age = date minus DOB\r",
+							"let age = currentDate.format(\"YYYY\") - DOB;\r",
+							"console.log(age);\r",
+							"\r",
+							"if (age <= 20)\r",
+							"{\r",
+							"    console.log(\"Under age\");\r",
+							"}\r",
+							"else if (age > 20 && age < 45)\r",
+							"{\r",
+							"    console.log(\"Correct age\");\r",
+							"}\r",
+							"else if (age >= 45)\r",
+							"{\r",
+							"    console.log(\"Over age\");\r",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://postman-echo.com/post",
+					"protocol": "https",
+					"host": [
+						"postman-echo",
+						"com"
+					],
+					"path": [
+						"post"
 					]
 				}
 			},
