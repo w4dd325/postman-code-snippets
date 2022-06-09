@@ -1,8 +1,9 @@
 {
 	"info": {
-		"_postman_id": "fd6df602-0cbb-4bd4-bf36-34fecf432e74",
+		"_postman_id": "876b2bef-c222-4fec-be40-47b373b8d1eb",
 		"name": "visualizer Examples",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18694725"
 	},
 	"item": [
 		{
@@ -38,6 +39,94 @@
 						"breeds",
 						"image",
 						"random"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "HTML",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonData = pm.response.text()\r",
+							"\r",
+							"pm.visualizer.set(`\r",
+							"<body>\r",
+							"<P>${jsonData}\r",
+							"</body>\r",
+							"`);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://dog.ceo/api/breeds/image/random",
+					"protocol": "https",
+					"host": [
+						"dog",
+						"ceo"
+					],
+					"path": [
+						"api",
+						"breeds",
+						"image",
+						"random"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "JSON",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonData = pm.response.text()\r",
+							"\r",
+							"var template = `\r",
+							"<pre>\r",
+							"<code>\r",
+							"${jsonData}\r",
+							"</code>\r",
+							"</pre>\r",
+							"`;\r",
+							"\r",
+							"pm.visualizer.set(template);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"contacts\": [\r\n\t\t{\r\n\t\t\t\"name\": \"{{$randomFullName}}\",\r\n\t\t\t\"email\": \"{{$randomEmail}}\"\r\n\t\t},\r\n\t\t{\r\n\t\t\t\"name\": \"{{$randomFullName}}\",\r\n\t\t\t\"email\": \"{{$randomEmail}}\"\r\n\t\t},\r\n\t\t{\r\n\t\t\t\"name\": \"{{$randomFullName}}\",\r\n\t\t\t\"email\": \"{{$randomEmail}}\"\r\n\t\t},\r\n\t\t{\r\n\t\t\t\"name\": \"{{$randomFullName}}\",\r\n\t\t\t\"email\": \"{{$randomEmail}}\"\r\n\t\t}\r\n\t\t]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://postman-echo.com/post",
+					"protocol": "https",
+					"host": [
+						"postman-echo",
+						"com"
+					],
+					"path": [
+						"post"
 					]
 				}
 			},
