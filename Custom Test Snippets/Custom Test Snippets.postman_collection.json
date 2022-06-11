@@ -1,0 +1,90 @@
+{
+	"info": {
+		"_postman_id": "011dadc1-e7cc-4335-9e22-e8ef17e1dc85",
+		"name": "Custom Test Snippets",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18694725"
+	},
+	"item": [
+		{
+			"name": "Snippets",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"eval(pm.collectionVariables.get(\"Test_For_200_func\"));\r",
+							"eval(pm.collectionVariables.get(\"Test_Response_Time_func\"));\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "https://virtserver.swaggerhub.com/w4dd325/test/1.0.0/pet/0",
+					"protocol": "https",
+					"host": [
+						"virtserver",
+						"swaggerhub",
+						"com"
+					],
+					"path": [
+						"w4dd325",
+						"test",
+						"1.0.0",
+						"pet",
+						"0"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "Test_For_200_func",
+			"value": "pm.test(\"Status code is 200\", function () {\n    pm.response.to.have.status(200);\n});",
+			"type": "string"
+		},
+		{
+			"key": "Test_Response_Time_func",
+			"value": "pm.test(\"Response time is less than 1000ms\", function () {\n    pm.expect(pm.response.responseTime).to.be.below(1000);\n});",
+			"type": "string"
+		}
+	]
+}
