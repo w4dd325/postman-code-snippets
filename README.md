@@ -1,6 +1,8 @@
 <img src="https://user-images.githubusercontent.com/86320001/151955989-cf6ac46d-790f-423f-892d-4425759159cd.png" 
      width="200" 
      height="70" />
+
+Available in Postman: https://www.postman.com/dark-matter-505283/code-snippets/overview
      
 # Data Driven Test Example
 A simple collection that returns a JSON response body. The URL and 'test' tab both include a dynamic variable fed from a CSV file using 'Collection Runner'. 
